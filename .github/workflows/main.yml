@@ -1,0 +1,27 @@
+name: Run Python Script
+
+on:
+  schedule:
+    - cron: '*/1 * * * *'  # Runs every minute
+
+jobs:
+  run-script:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v3
+        with:
+          python-version: '3.x'  # Replace with your desired Python version
+
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt
+          pip install python-dotenv selenium webdriver-manager
+
+      - name: Run script
+        run: python your_script_name.py
+        # Replace 'your_script_name.py' with the name of your Python script
