@@ -20,5 +20,5 @@ jobs:
           pip install python-dotenv selenium webdriver-manager
 
       - name: Run script
-        run: python your_script_name.py
+        run: python main.py
         # Replace 'your_script_name.py' with the name of your Python script
