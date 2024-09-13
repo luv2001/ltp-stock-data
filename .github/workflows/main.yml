@@ -1,24 +1,20 @@
-name: Run Python Script
+name: run main.py
 
-on: push
+on:
+  schedule:
+    - cron: '* * * * *' # Run every minute
+
 jobs:
-  run-script:
+  build:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
+      - name: checkout repo content
+        uses: actions/checkout@v2 # checkout the repository content to GitHub runner
 
-      - name: Set up Python
-        uses: actions/setup-python@v3
+      - name: setup python
+        uses: actions/setup-python@v4
         with:
-          python-version: '3.10'  # Use the version you need
+          python-version: '3.9' # install the Python version needed
 
-      - name: Install dependencies
-        run: |
-          pip install -r requirements.txt
-          pip install python-dotenv selenium webdriver-manager
-
-      - name: Run script
+      - name: execute py script # run main.py
         run: python main.py
-        # Replace 'your_script_name.py' with the name of your Python script
